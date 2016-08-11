@@ -15,6 +15,7 @@ Posts.helpers({getCollectionName: () => "posts"});
  */
 Posts.getLink = function (post, isAbsolute = false, isRedirected = true) {
   const url = isRedirected ? Telescope.utils.getOutgoingUrl(post.url) : post.url;
+  if (this.isRichCard(post)) return this.getPageUrl(post, isAbsolute);
   return !!post.url ? url : this.getPageUrl(post, isAbsolute);
 };
 Posts.helpers({getLink: function (isAbsolute) {return Posts.getLink(this, isAbsolute);}});
@@ -33,6 +34,7 @@ Posts.helpers({getShareableLink: function () {return Posts.getShareableLink(this
  * @param {Object} post
  */
 Posts.getLinkTarget = function (post) {
+  if (this.isRichCard(post)) return "";
   return !!post.url ? "_blank" : "";
 };
 Posts.helpers({getLinkTarget: function () {return Posts.getLinkTarget(this);}});
@@ -51,6 +53,11 @@ Posts.helpers({getPageUrl: function (isAbsolute) {return Posts.getPageUrl(this, 
 ///////////////////
 // Other Helpers //
 ///////////////////
+
+Posts.isRichCard = function (post) {
+  return post.media && post.media.html;
+};
+Posts.helpers({isRichCard: function () {return Posts.isRichCard(this);}});
 
 /**
  * @summary Get a post author's name

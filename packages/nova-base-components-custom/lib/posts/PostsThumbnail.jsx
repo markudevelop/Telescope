@@ -15,8 +15,7 @@ const PostsMediaThumbnail = ({ post }) => {
 };
 
 const PostsThumbnail = ({post}) => {
-  const isRichCard = post.media && post.media.html;
-  if (isRichCard) return <PostsMediaThumbnail post={ post }/>;
+  if (Posts.isRichCard(post)) return <PostsMediaThumbnail post={ post }/>;
 
   return (
     <a className="posts-thumbnail" href={Posts.getLink(post)} target={Posts.getLinkTarget(post)}>
