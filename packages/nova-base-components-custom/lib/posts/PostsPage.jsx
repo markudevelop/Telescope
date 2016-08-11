@@ -5,7 +5,7 @@ const PostsPage = ({document, currentUser}) => {
 
   const post = document;
   const htmlBody = {__html: post.htmlBody};
-  const isRichCard = post.media && post.media.html || post.media && post.media.html;
+  const isRichCard = post.media && post.media.html;
 
   return (
     <div className="posts-page">

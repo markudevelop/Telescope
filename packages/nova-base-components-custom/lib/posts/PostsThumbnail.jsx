@@ -15,7 +15,7 @@ const PostsMediaThumbnail = ({ post }) => {
 };
 
 const PostsThumbnail = ({post}) => {
-  const isRichCard = post.media && post.media.html || post.media && post.media.html;
+  const isRichCard = post.media && post.media.html;
   if (isRichCard) return <PostsMediaThumbnail post={ post }/>;
 
   return (
